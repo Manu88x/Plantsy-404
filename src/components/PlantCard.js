@@ -5,7 +5,8 @@ function PlantCard({ plant, updatePlantStatus,deletePlant }) {
 
   const handleStockToggle = () => {
     setInStock(!inStock);
-    // Send the updated status to the backend
+
+    //patch request:
     fetch(`http://localhost:6001/plants/${plant.id}`, {
       method: "PATCH",
       headers: {
@@ -15,24 +16,24 @@ function PlantCard({ plant, updatePlantStatus,deletePlant }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Update plant status in the parent component state
+      
         updatePlantStatus(data);
       })
       .catch((error) => console.error("Error updating plant status:", error));
   };
 
 
-
+//delete request:
   const handleDelete = () => {
     fetch(`http://localhost:6001/plants/${plant.id}`, {
       method: "DELETE",
     })
       .then((response) => {
         if (response.ok) {
-          // Trigger delete in the parent component (update the state)
+
           deletePlant(plant.id);
         } else {
-          throw new Error("Failed to delete the plant");
+          console.log("Failed to delete the plant");
         }
       })
       .catch((error) => console.error("Error deleting plant:", error));

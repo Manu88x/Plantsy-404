@@ -11,6 +11,9 @@ function NewPlantForm({ setPlants }) {
 
     const newPlant = { name, image, price: parseFloat(price) };
 
+
+//post request:
+
     fetch("http://localhost:6001/plants", {
       method: "POST",
       headers: {
@@ -20,16 +23,15 @@ function NewPlantForm({ setPlants }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Add the new plant to the state
+        
         setPlants((prevPlants) => [...prevPlants, data]);
-        // Reset form fields
+        
         setName("");
         setImage("");
         setPrice("");
       })
       .catch((error) => console.error("Error adding plant:", error));
   };
-
 
 
 function handleNameChange(event){

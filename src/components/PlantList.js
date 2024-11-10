@@ -8,9 +8,8 @@ function PlantList({ plants, setPlants }) {
 
   
   const deletePlant = (id) => {
-    // Update the state by filtering out the plant with the given id
     setPlants((prevPlants) => prevPlants.filter((plant) => plant.id !== id));
-  };
+  };// filter for the delete button to actually remove the content
 
 
   return (
